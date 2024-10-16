@@ -18,9 +18,8 @@ function start() {
 
   const workerQueue = new Queue("worker", {
     redis: {
-      port: process.env.CLOUD_REDIS_PORT,
-      host: process.env.CLOUD_REDIS_HOST,
-      password: process.env.CLOUD_REDIS_PASSWORD,
+      port: 6379,
+      host: process.env.REDIS_HOST,
     },
   });
 

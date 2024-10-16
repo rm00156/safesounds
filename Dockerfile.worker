@@ -1,0 +1,38 @@
+# Step 1: Use an official Python slim base image for better compatibility with PyTorch
+FROM python:3.9-slim
+
+RUN pip cache purge
+# Step 2: Install system dependencies
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg2 \
+    build-essential \
+    # redis-server \
+    git \
+    && curl -fsSL https://deb.nodesource.com/setup_18.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean
+
+# Step 3: Install PyTorch from the CPU wheel
+RUN pip install --upgrade pip && \
+    pip install torch --index-url https://download.pytorch.org/whl/cpu
+
+# Step 4: Set the working directory in the container
+WORKDIR /safesounds
+
+# Step 5: Clone the GitHub repository (replace with your repository URL)
+RUN git clone https://github.com/rm00156/safesounds.git  .
+
+COPY requirements.txt .
+# Step 5: Install Python dependencies
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt
+
+RUN npm install -g pm2   
+RUN npm install --production && \
+    npm cache clean --force
+# Step 7: Expose ports if necessary
+EXPOSE 4000  
+
+# Step 8: Start the application (adjust this to your app)
+CMD ["node", "worker.js"]

@@ -1,7 +1,4 @@
-torch
-pydub
-openai-whisper
-numpy
-json
 spleeter
 ffmpeg
+pydub
+openai-whisper
