@@ -1,9 +1,8 @@
 const Queue = require("bull");
 const workerQueue = new Queue("worker", {
   redis: {
-    portport: process.env.CLOUD_REDIS_PORT,
-    host: process.env.CLOUD_REDIS_HOST,
-    password: process.env.CLOUD_REDIS_PASSWORD,
+    port: 6379,
+    host: process.env.REDIS_HOST
   },
 });
 
