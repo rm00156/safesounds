@@ -2,3 +2,6 @@ node_modules
 .env
 coverage
 dump.rdb
+output
+pretrained_models
+uploads
