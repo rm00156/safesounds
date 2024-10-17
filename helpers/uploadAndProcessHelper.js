@@ -225,7 +225,7 @@ async function processVideo(job, uploadPath, date, fileNameWithOutExtension) {
 }
 
 async function executeFfmpegFfProbe(fileToBeProcessed) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     ffmpeg.ffprobe(fileToBeProcessed, (err, metadata) => {
       if (err) {
         reject("Error:", err);
