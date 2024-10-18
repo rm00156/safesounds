@@ -13,6 +13,7 @@ services:
       - '4000:4000'
     volumes:
       - uploads:/safesounds/uploads
+      - public:/safesounds/public/output
 
   worker:
     build:
@@ -24,6 +25,7 @@ services:
       - redis
     volumes:
       - uploads:/safesounds/uploads
+      - public:/safesounds/public/output
 
   redis:
     image: redis:alpine
@@ -32,4 +34,6 @@ services:
 
 volumes:
   uploads:
+    driver: local
+  public:
     driver: local

@@ -226,7 +226,7 @@ async function processVideo(job, uploadPath, date, fileNameWithOutExtension) {
 
 async function executeFfmpegFfProbe(fileToBeProcessed) {
   return new Promise((resolve, reject) => {
-    ffmpeg.ffprobe(fileToBeProcessed, (err, metadata) => {
+    ffmpeg.ffprobe('hello', (err, metadata) => {
       if (err) {
         reject("Error:", err);
       }
@@ -535,8 +535,6 @@ function getProcessedCurrentTimeStamp(str) {
   //   // Function to convert MM:SS.mmm to seconds
 
   return convertToSeconds(endTime);
-  console.log(`Last timestamp: ${endTime}`); // Output: Last timestamp: 00:40.880
-  console.log(`Total seconds: ${totalSeconds}`); // Output: Total seconds: 40.88
 }
 
 module.exports = {
